@@ -1,0 +1,56 @@
+.b{
+    background-image: url(../Images//footer-bg.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0 80px 0;
+    margin-bottom: 0;
+}
+
+.l{
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    cursor: pointer;
+}
+
+small, .fa-angle-right{
+    transition: all .3s !important;
+    -webkit-transition: all .3s !important;
+    -moz-transition: all .3s !important;
+    -ms-transition: all .3s !important;
+    -o-transition: all .3s !important;
+}
+
+.l:hover, 
+.l:hover > small,
+.l:hover > .fa-angle-right {
+    color: yellow !important;
+}
+
+.control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #40474f;
+    appearance: none;
+    border-radius: 2px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+
+.control:focus{
+    outline: 1px solid yellow !important;
+}
+

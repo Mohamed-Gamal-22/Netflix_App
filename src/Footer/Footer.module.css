@@ -1,0 +1,37 @@
+.bg{
+    background-color: #0f1c27;
+    border-top: 2px solid #2d4457;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.item{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px){
+    .item{
+        flex-direction: column;
+    }
+
+    .left{
+        margin-bottom: 10px !important;
+    }
+}
+
+
+.right{
+    cursor: pointer;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+}
+
+.right:hover{
+    color: yellow !important;
+}

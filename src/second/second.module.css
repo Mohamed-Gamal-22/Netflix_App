@@ -1,0 +1,131 @@
+.spanitem{
+    text-transform: capitalize;
+}
+
+.spanitem span {
+    display: inline-block;
+    margin: 0 15px 0 0;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+}
+
+
+.spanitem span:hover {
+    color: yellow;
+}
+
+/* /////////////////////////////// */
+
+.img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.over {
+    border-radius: 10px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    opacity: 0;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.smallimg:hover .over {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+
+
+/* /////////////////////////// */
+
+.info{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 20;
+}
+
+.info span {
+    background: #09c;
+    display: inline-block;
+    padding: 2px;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    text-transform: capitalize;
+}
+
+.info h6{
+    color: #fff !important;
+}
+.smallimg:hover .info h6 {
+    color: yellow !important;
+}
+
+/* ////////////////////////////////// */
+
+.ads {
+    cursor: pointer;  
+    text-transform: capitalize; 
+    font-weight: bold;
+}
+
+.ads div, .ads img{
+    margin: 0 !important; 
+}
+.b{
+    display: none;
+}
+@media (max-width : 991px) {
+    .ads {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background: green;
+        flex-direction: column;
+        padding: 5px;
+    }
+    .b{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width : 767px) {
+    .b{
+        display: none;
+    }
+}
