@@ -18,7 +18,7 @@ const options = {
     dots: false,
     autoplay: true,
     loop : true,
-    smartSpeed: 1000,
+    smartSpeed: 800,
     responsive: {
         0   : { items: 1 },
         767 : { items: 1 },
