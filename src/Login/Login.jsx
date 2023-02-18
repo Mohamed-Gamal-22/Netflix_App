@@ -1,12 +1,11 @@
 import axios from 'axios';
 import Joi from 'joi';
 import  {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import style from "./Login.module.css";
 
 
 export default function Login({getUserData}) {
-
 
   const navigate = useNavigate();
   const [joiError, setJoiError] = useState([])
@@ -50,6 +49,7 @@ export default function Login({getUserData}) {
       }
     }
   }
+      
 
   const validateForm = () => {
 
@@ -79,11 +79,14 @@ export default function Login({getUserData}) {
             <input  onChange={getData}type="password" className='form-control mt-2 p-1' id='password' placeholder='Password' name='password'/>
           </div>
 
-          <button className='btn btn-danger mt-3' type='submit'>
-            {/* why fontawesome get an error when i call icon and do loading? */}
-            {/* <i className="fas fa-spinner fa-spin"></i> */}
-            {loading ?  "register": "Login"}
-          </button>
+          <div className="mt-3 d-flex justify-content-start align-items-center">
+            <button className='btn btn-danger me-3' type='submit'>
+              {/* why fontawesome get an error when i call icon and do loading? */}
+              {/* <i className="fas fa-spinner fa-spin"></i> */}
+              {loading ?  "go" : "Login"}
+            </button>
+            <span><Link to="/register">Are you new ? go to Register</Link></span>
+          </div>
         </form>
       </div>
     </>

@@ -7,7 +7,7 @@ import { movieContext } from './../MovieContext/MovieContext';
 
 export default function Details({userData}) {
 
-  const {allNotes} = useContext(movieContext);
+  const {allNotes, getAllNotes} = useContext(movieContext);
   const [notes, setNotes] = useState([])
   const user_id = userData._id;
   const token = localStorage.getItem("token");
@@ -23,6 +23,7 @@ export default function Details({userData}) {
     citizenID : user_id,
     token : token
   })
+
 
   const getDetails = async () => {
     let {data} = await axios.get(`https://api.themoviedb.org/3/${category}/${id}?api_key=941d7c8adac166c6d12ed7428eec2753&language=en-US`)
@@ -50,14 +51,15 @@ export default function Details({userData}) {
     }
     else{
       await addTo(userNote)
-      alert("added !");
-      console.log(notes.length);
+      getAllNotes()
+      setIsMovieAdded(true)
+      alert(`you added this item successfully !`)
     }
   }
 
   const addTo = async(userNote) => {
     let {data} = await axios.post(`https://sticky-note-fe.vercel.app/addNote`,userNote)
-    console.log(data);
+    // console.log(data);
   }
 
 
@@ -76,6 +78,19 @@ export default function Details({userData}) {
     else{
       setIsMovieAdded(false)
     }
+  }
+
+  const deleteItem =async (details) => {
+    let Notes = allNotes.map((note) => ({desc :note.desc, id : note._id}));
+
+    Notes = Notes.filter((note) => note.desc !== "");
+    const note = Notes.filter((note) => JSON.parse(note.desc).id == details.id);
+    const id = note[0]?.id
+
+    const {data} = await axios.delete(`https://sticky-note-fe.vercel.app/deleteNote`, {data : {token : token, NoteID : id}});
+    setIsMovieAdded(false)
+    getAllNotes()
+    alert("you deleted this item successfully !")
   }
 
 
@@ -129,7 +144,7 @@ export default function Details({userData}) {
                {details.overview}
             </div>
             {isMovieAdded ? 
-            <div onClick={() => getMovie(details)} className={`btn btn-danger w-100 mt-5`}>Remove From WatchList</div>
+            <div onClick={() => deleteItem(details)} className={`btn btn-danger w-100 mt-5`}>Remove From WatchList</div>
             : 
             <div onClick={() => getMovie(details)} className={`btn btn-success w-100 mt-5`}>Add To WatchList</div>}
             </> : <>

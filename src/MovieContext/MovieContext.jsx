@@ -46,7 +46,8 @@ export function MovieContextProvider(props){
     const getAllNotes = async () => {
         let {data} = await axios.post(`https://sticky-note-fe.vercel.app/getUserNotes`, {token : localStorage.getItem("token"), userID : props.userData._id});
         setAllNotes(data.Notes);
-    }    
+    }
+    
 
 
     // why when i comment these lines cant be called all above functions !
@@ -78,7 +79,7 @@ export function MovieContextProvider(props){
 
     return (
         <movieContext.Provider value=
-        {{movies, trendingAll, data, tv, changeType, allNotes}}>
+        {{movies, trendingAll, data, tv, changeType, allNotes, getAllNotes}}>
             {props.children}
         </movieContext.Provider>
     )

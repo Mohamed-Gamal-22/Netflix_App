@@ -40,28 +40,28 @@ const logout = () => {
 
   return (
     <>
-    <Navbar userData={userData} logout={logout}/>
-    <Bgheader />
-      <div className="container">
-        <MovieContextProvider userData={userData}>
-          <Routes>
-            <Route element={<ProtectedRoutes userData={userData}/>}>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="home" element={<Home />}></Route>
-              <Route path="about" element={<About />}></Route>
-              <Route path="youtube" element={<Youtube />}></Route>
-              <Route path="movies" element={<Movies />}></Route>
-              <Route path="tv" element={<Tvshows />}></Route>
-              <Route path="details" element={<Details userData={userData}/>}></Route>
-              <Route path="profile" element={<Profile userData={userData}/>}></Route>
-            </Route>
-            <Route path="login" element={<Login  getUserData={getUserData}/>}/>
-            <Route path="register" element={<Register />}/>
-            <Route path="*" element={<Notfound />}/>
-          </Routes>
-        </MovieContextProvider>
-      </div>
-     {userData?  <Footer /> : ""}
+      <Navbar userData={userData} logout={logout}/>
+      <Bgheader />
+        <div className="container">
+          <MovieContextProvider userData={userData}>
+            <Routes>
+              <Route element={<ProtectedRoutes userData={userData}/>}>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="home" element={<Home />}></Route>
+                <Route path="about" element={<About />}></Route>
+                <Route path="youtube" element={<Youtube />}></Route>
+                <Route path="movies" element={<Movies />}></Route>
+                <Route path="tv" element={<Tvshows />}></Route>
+                <Route path="details" element={<Details userData={userData}/>}></Route>
+                <Route path="profile" element={<Profile userData={userData}/>}></Route>
+              </Route>
+              <Route path="login" element={<Login  getUserData={getUserData}/>}/>
+              <Route path="register" element={<Register />}/>
+              <Route path="*" element={<Notfound />}/>
+            </Routes>
+          </MovieContextProvider>
+        </div>
+      {userData?  <Footer /> : ""}
     </>
   );
 }
