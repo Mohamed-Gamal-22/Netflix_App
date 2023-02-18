@@ -18,7 +18,7 @@ export default function Profile({userData}) {
       // const note = notes.filter((note) => JSON.parse(note.desc).id == details.id);
       let desc = notes.map((note) => ({desc :JSON.parse(note.desc), id : note._id}))
       setMyNotes(desc);
-      console.log(desc);
+      // console.log(desc);
     }
     else{
       setMyNotes([])
