@@ -9,3 +9,21 @@
     -o-transform: translate(-50%, -50%);
     border : 2px solid #fafafa 
 }
+
+.last{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+@media  (max-width : 700px) { 
+    .last {
+        flex-direction: column;
+        align-items: start !important;
+        justify-content: start !important;
+    }
+
+    .last span {
+        margin-top: 15px;
+    }
+}

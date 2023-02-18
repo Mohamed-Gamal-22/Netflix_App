@@ -96,7 +96,7 @@ export default function Register() {
             <input  onChange={getData}type="password" className='form-control mt-2 p-1' id='password' placeholder='Password' name='password'/>
           </div>
 
-          <div className='mt-3 d-flex justify-content-start align-items-center'>
+          <div className={`${style.last} mt-3`}>
           <button className='btn btn-danger me-3' type='submit'>
             {/* why fontawesome get an error when i call icon and do loading? */}
             {/* <i className="fa-solid fa-spinner"></i> */}
