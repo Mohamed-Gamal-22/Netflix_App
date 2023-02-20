@@ -2,6 +2,7 @@ import axios from 'axios';
 import Joi from 'joi';
 import React, {useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 import style from "./Register.module.css";
 
 
@@ -11,6 +12,7 @@ export default function Register() {
   const [joiError, setJoiError] = useState([])
   const [apiError, setApiError] = useState("");
   const [loading , setLoading] = useState(false)
+  const [LoadingPage, setLoadingPage] = useState(true)
   const [user, setUser] = useState({
     first_name : "",
     last_name : "",
@@ -30,10 +32,12 @@ export default function Register() {
   const register = async (e) => {
     e.preventDefault();
     setLoading(true)
+    setLoadingPage(false)
     let check = validateForm()
     
     if(check.error){
       setLoading(false)
+      setLoadingPage(true)
       setJoiError(check.error.details);
     }
     else{
@@ -42,11 +46,13 @@ export default function Register() {
       
       if(data.message === "success"){
         setLoading(false)
+        setLoadingPage(true)
         alert("you are registerd successfully")
         navigate("/login")
       }
       else{
         setLoading(false)
+        setLoadingPage(true)
         let index = data.message.lastIndexOf(":");
         let mess = data.message.substr(index+1)
         setApiError(mess)
@@ -69,7 +75,7 @@ export default function Register() {
 
   return (
     <>
-      <div className={`${style.cont} rounded-3 w-50 mx-auto p-3 text-white`}>
+      {LoadingPage ? <div className={`${style.cont} rounded-3 w-50 mx-auto p-3 text-white`}>
         <h2 className='text-center mt-3'>Login Now</h2>
         <form onSubmit={register} className='p-3'>
           {joiError.length > 0 ? joiError.map((error, index) =>
@@ -105,7 +111,7 @@ export default function Register() {
           <span><Link to="/login">You have an account ? go login</Link></span>
           </div>
         </form>
-      </div>
+      </div>: <Loading />}
     </>
   )
 }

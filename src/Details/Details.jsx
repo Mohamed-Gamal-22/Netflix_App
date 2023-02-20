@@ -4,6 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import style from "./Details.module.css";
 import { movieContext } from './../MovieContext/MovieContext';
+import Loading from './../Loading/Loading';
+
 
 export default function Details({userData}) {
 
@@ -13,7 +15,7 @@ export default function Details({userData}) {
   const token = localStorage.getItem("token");
   const baseUrlImg = "https://image.tmdb.org/t/p/w500";
   const [searchBaram] = useSearchParams();
-  const [details, setDetails] = useState([])
+  const [details, setDetails] = useState({})
   const id = searchBaram.get("id");
   const category = searchBaram.get("category");
   const [isMovieAdded , setIsMovieAdded] = useState(false);
@@ -28,6 +30,7 @@ export default function Details({userData}) {
   const getDetails = async () => {
     let {data} = await axios.get(`https://api.themoviedb.org/3/${category}/${id}?api_key=941d7c8adac166c6d12ed7428eec2753&language=en-US`)
     setDetails(data);
+    
   }
 
   const getMovie = (newOne) => {
@@ -36,6 +39,7 @@ export default function Details({userData}) {
     setNote(userNote);
     addMovie(userNote)
   }
+  console.log(details);
 
   const addMovie = async(userNote) => {
     let allDesc = notes.map((note) => note.desc);
@@ -115,8 +119,7 @@ export default function Details({userData}) {
   
   return (
     <>
-      {details
-       ? <div className="row my-5 py-5">
+      {details.id ? <div className="row my-5 py-5">
         <div className="col-lg-6 mb-3 text-center">
           <div className="img">
             <img className={`${style.img}`} src={`${details.poster_path ? baseUrlImg+details.poster_path : baseUrlImg+details.profile_path}`} alt="imge" />
@@ -155,7 +158,7 @@ export default function Details({userData}) {
           </div>
         </div>
       </div>
-       :""}
+       : <Loading />}
     </>
   )
 }

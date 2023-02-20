@@ -54,7 +54,13 @@ export default function Profile({userData}) {
                 <div onClick={() => deleteItem(e.id)} className="btn btn-danger mt-1 w-100">Delete</div>
               </div>
             </div>
-          ): <h1 className='text-danger mt-5'>you don't choose any myNotes yet !</h1>}
+          ): <>
+          <h1 className='text-danger mt-5'>you don't choose any movies or tv shows yet !</h1>
+          <div className='mb-5 pb-5'></div>
+          <div className='mb-5 pb-5'></div>
+          <div className='mb-3'></div>
+          </>}
+
         </div>
       </div>
     </>

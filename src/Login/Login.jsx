@@ -3,6 +3,7 @@ import Joi from 'joi';
 import  {useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import style from "./Login.module.css";
+import Loading from './../Loading/Loading';
 
 
 export default function Login({getUserData}) {
@@ -12,6 +13,7 @@ export default function Login({getUserData}) {
   const [apiError, setApiError] = useState("");
   const [loading , setLoading] = useState(false)
   const [user, setUser] = useState({email : "", password : ""})
+  const [loadPage, setLoadPage] = useState(true)
 
 
   const getData = (e) => {
@@ -23,10 +25,12 @@ export default function Login({getUserData}) {
   const login = async (e) => {
     e.preventDefault();
     setLoading(true)
+    setLoadPage(false)
     let check = validateForm()
     
     if(check.error){
       setLoading(false)
+      setLoadPage(true)
       setJoiError(check.error.details);
     }
     else{
@@ -37,12 +41,14 @@ export default function Login({getUserData}) {
  
         localStorage.setItem("token", data.token)
         setLoading(false)
+        setLoadPage(true)
         getUserData()
         alert("you are loged in successfully")
         navigate("/home")
       }
       else{
         setLoading(false)
+        setLoadPage(true)
         let index = data.message.lastIndexOf(":");
         let mess = data.message.substr(index+1)
         setApiError(mess)
@@ -64,7 +70,7 @@ export default function Login({getUserData}) {
 
   return (
     <>
-      <div className={`${style.cont} rounded-3 w-50 mx-auto p-3 text-white`}>
+      {loadPage ? <div className={`${style.cont} rounded-3 w-50 mx-auto p-3 text-white`}>
         <h2 className='text-center'>Login Now</h2>
         <form onSubmit={login} className='p-3'>
           {joiError.length > 0 ? joiError.map((error, index) =>
@@ -88,7 +94,7 @@ export default function Login({getUserData}) {
             <span><Link to="/register">Are you new ? go to Register</Link></span>
           </div>
         </form>
-      </div>
+      </div> : <Loading />}
     </>
   )
 }
